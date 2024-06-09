@@ -58,20 +58,16 @@ def start():
     Start the replacement
     '''
 
-    all_files = list_valid_files()
-
-    source_files = list(filter(lambda file: file.endswith('.txt'), all_files))
-    csv_files = list(filter(lambda file: file.endswith('.csv'), all_files))
-    csv_files.sort()
+    source_files, csv_files = list_valid_files()
     
     click.echo('Select source\n - reads every line starting from 2nd line\n - takes measurement until first \';\'')
     click.echo('Selected file will be excluded from scan!')
 
     source = source_files[0]
-    if len(source_files) > 0:
+    if len(source_files) > 1:
         answer = inquirer.prompt([inquirer.List('source', message='choose', choices=source_files)])
         source = answer['source']
-    click.echo(f'Source: {source}\n')
+    print_green(f'Source: {source}\n')
 
     with open(source) as s:
         next(s) # skip 1st line
@@ -95,14 +91,21 @@ def start():
 
 def list_valid_files():
     click.echo(f'CSV loading...\n')
-    valid_files = list(file for file in os.listdir() if os.path.isfile(file) and is_valid_file(file))
-    if len(valid_files) == 0:
-        print_error('No valid files found. You must have .csv or .txt files in this directory!')
-        exit(1)
-    return valid_files
+    files = list(file for file in os.listdir() if os.path.isfile(file))
 
-def is_valid_file(file):
-    return file.endswith('.csv') or file.endswith('.txt')
+    source_files = list(filter(lambda file: file.endswith('.txt'), files))
+    if len(source_files) == 0:
+        print_error('No .txt source files could be found!')
+        exit(1)
+    
+    csv_files = list(filter(lambda file: file.endswith('.csv'), files))
+    if len(csv_files) == 0:
+        print_error('No .csv source files could be found!')
+        exit(1)
+    csv_files.sort()
+
+    return source_files, csv_files
+
 
 def print_warning(string):
     click.echo(f'{bcolors.WARNING}{string}{bcolors.ENDC}')
