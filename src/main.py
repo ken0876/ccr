@@ -12,20 +12,20 @@ class bcolors:
 
 def run():
     try:
-        csv()
+        ccr()
     except KeyboardInterrupt:
         click.echo('User exit...')
     except Exception as e:
         pass
 
 @click.group()
-def csv():
+def ccr():
     ''' 
-    This is a script to change measurement comments by values from source file
+    This is a script to replace measurement comments by values from source file
     '''
     pass
 
-@csv.command()
+@ccr.command()
 def mando():
     '''
     This is the way!
@@ -52,10 +52,10 @@ def mando():
     ⠀⢸⣿⣿⡇⢸⣿⣿⡇⢸⣿⡇⠀⠀⣿⣿⠀⢸⣿⣿⠀⠀⠀⠀⠀⠀⠻⡇⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀
     ''')
 
-@csv.command()
-def change():
+@ccr.command()
+def replace():
     ''' 
-    Start the changes
+    Start the replacement
     '''
 
     all_files = list_valid_files()
