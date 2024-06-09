@@ -59,35 +59,35 @@ def start():
     '''
 
     all_files = list_valid_files()
-        
+
+    source_files = list(filter(lambda file: file.endswith('.txt'), all_files))
+    csv_files = list(filter(lambda file: file.endswith('.csv'), all_files))
+    csv_files.sort()
     
     click.echo('Select source\n - reads every line starting from 2nd line\n - takes measurement until first \';\'')
     click.echo('Selected file will be excluded from scan!')
-    answer = inquirer.prompt([inquirer.List('source', message='choose', choices=all_files)])
+    answer = inquirer.prompt([inquirer.List('source', message='choose', choices=source_files)])
     source = answer['source']
-    click.echo(f'Choose: {source}\n')
+    click.echo(f'Source: {source}\n')
 
-    source_file = all_files.pop(all_files.index(source))
-    all_files.sort()
-
-    with open(source_file) as s:
+    with open(source) as s:
         next(s) # skip 1st line
         source_lines = s.readlines()
         s.close()
     source_lines_first_column = list(map(lambda line: str(line).split(';')[0], source_lines))
     
-    for index, csv in enumerate(all_files):
-        f = open(csv, 'r+')
-        csv_lines = f.readlines()
+    for index, csv in enumerate(csv_files):
+        c = open(csv, 'r+')
+        csv_lines = c.readlines()
         if len(csv_lines) > 0:
             if not csv_lines[0].startswith(';'):
                 print_warning(f'Skipped "{csv}" as no comment in first line indicated by starting with \';\'')
                 continue
             print_green(f'{csv} | {csv_lines[0]} --> {source_lines_first_column[index]}'.replace('\n', ''))
             csv_lines[0] = source_lines_first_column[index] + "\n"
-            f.seek(0,0)
-            f.writelines(csv_lines)
-        f.close()
+            c.seek(0,0)
+            c.writelines(csv_lines)
+        c.close()
 
 
 def list_valid_files():
