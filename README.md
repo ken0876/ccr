@@ -1,4 +1,4 @@
-# CSV COMMENT CHANGER
+# CSV COMMENT REPLACER
 ### This is a CLI tool to change measurement comments in .csv files by values from a source .txt file
 
 ## Format of source TXT file:
