@@ -7,7 +7,7 @@
 
 Valid example:
 ```
-SOME FIRST LINE
+SOME FIRST LINE - will be ignored
 **0.123;0.745;**1.745
 1.976;0.345;2.445;
 0.453
