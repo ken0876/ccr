@@ -1,4 +1,4 @@
-# Csv Comment Replacer
+# Csv Comment Replacer (CCR)
 ### This is a CLI tool to change measurement comments in .csv files by values from a source .txt file
 
 ## Format of source TXT file:
@@ -38,4 +38,13 @@ Then execute this command anywhere in you preferred terminal:
 ```
 pip install git+https://github.com/ken0876/csv
 ```
+
+## Usage
+
+- Open your preferred terminal
+- Navigate to the directory where all your .csv and the .txt source file are in place ('cd' command)
+- In the directory execute 'ccr' in the terminal
+- Follow the instructions
+
+
 # :beaver: Bober Kurwa
