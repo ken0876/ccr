@@ -25,7 +25,11 @@ OTHER LINE
 ANOTHER LINE
 ```
 
-### On this basis the tool will sort all csv files by their name and will rewrite the first line according to the order of values from the source file
+### On this basis the tool will sort all csv files by their name and will rewrite each first line according to the order of values from the source file
+
+>From example:
+>"csv_file_0001.csv" first line will be "0.123"
+>"csv_file_0002.csv" first line will be "1.976"
 
 ## Install
 
