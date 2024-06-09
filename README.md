@@ -37,7 +37,7 @@ Assumed from examples:\
 Use must have Python installed [Python Install](https://www.python.org/downloads/)\
 Then execute this command anywhere in you preferred terminal:
 ```
-pip install git+https://github.com/ken0876/csv
+pip install git+https://github.com/ken0876/ccr
 ```
 
 ## Usage
