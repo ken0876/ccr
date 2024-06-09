@@ -25,7 +25,8 @@ OTHER LINE
 ANOTHER LINE
 ```
 
-### On this basis the tool will sort all csv files by their name and will rewrite each first line according to the order of values from the source file
+## What is it doing?
+The tool will sort all csv files by their name and will rewrite each first line according to the order of values from the source file
 
 Assumed from examples:\
 "csv_file_0001.csv" first line will be "0.123"\
