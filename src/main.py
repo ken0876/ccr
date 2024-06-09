@@ -82,7 +82,7 @@ def start():
             if not csv_lines[0].startswith(';'):
                 print_warning(f'Skipped "{csv}" as no comment in first line indicated by starting with \';\'')
                 continue
-            print_green(f'{csv} | {csv_lines[0]} --> {source_lines_first_column[index]}'.replace('\n', ''))
+            print_green(f'{csv} [{csv_lines[0]} --> {source_lines_first_column[index]}]'.replace('\n', ''))
             csv_lines[0] = source_lines_first_column[index] + "\n"
             c.seek(0,0)
             c.writelines(csv_lines)
