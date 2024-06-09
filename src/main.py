@@ -53,7 +53,7 @@ def mando():
     ''')
 
 @ccr.command()
-def replace():
+def start():
     ''' 
     Start the replacement
     '''
