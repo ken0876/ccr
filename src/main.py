@@ -4,6 +4,12 @@ from pathlib import Path
 
 import inquirer
 
+class bcolors:
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+
 def run():
     try:
         csv()
@@ -74,7 +80,10 @@ def change():
         f = open(csv, 'r+')
         csv_lines = f.readlines()
         if len(csv_lines) > 0:
-            click.echo(f'{csv} | {csv_lines[0]} --> {source_lines_first_column[index]}'.replace('\n', ''))
+            if not csv_lines[0].startswith(';'):
+                print_warning(f'Skipped "{csv}" as no comment in first line indicated by starting with \';\'')
+                continue
+            print_green(f'{csv} | {csv_lines[0]} --> {source_lines_first_column[index]}'.replace('\n', ''))
             csv_lines[0] = source_lines_first_column[index] + "\n"
             f.seek(0,0)
             f.writelines(csv_lines)
@@ -85,9 +94,18 @@ def list_valid_files():
     click.echo(f'CSV loading...\n')
     valid_files = list(file for file in os.listdir() if os.path.isfile(file) and is_valid_file(file))
     if len(valid_files) == 0:
-        click.echo('No valid files found. You must have .csv or .txt files in this directory!')
+        print_error('No valid files found. You must have .csv or .txt files in this directory!')
         exit(1)
     return valid_files
 
 def is_valid_file(file):
     return file.endswith('.csv') or file.endswith('.txt')
+
+def print_warning(string):
+    click.echo(f'{bcolors.WARNING}{string}{bcolors.ENDC}')
+
+def print_green(string):
+    click.echo(f'{bcolors.OKGREEN}{string}{bcolors.ENDC}')
+
+def print_error(string):
+    click.echo(f'{bcolors.FAIL}{string}{bcolors.ENDC}')
