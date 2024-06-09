@@ -66,8 +66,11 @@ def start():
     
     click.echo('Select source\n - reads every line starting from 2nd line\n - takes measurement until first \';\'')
     click.echo('Selected file will be excluded from scan!')
-    answer = inquirer.prompt([inquirer.List('source', message='choose', choices=source_files)])
-    source = answer['source']
+
+    source = source_files[0]
+    if len(source_files) > 0:
+        answer = inquirer.prompt([inquirer.List('source', message='choose', choices=source_files)])
+        source = answer['source']
     click.echo(f'Source: {source}\n')
 
     with open(source) as s:
