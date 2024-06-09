@@ -11,7 +11,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'csv = src.main:run',
+            'ccr = src.main:run',
         ],
     },
 )
