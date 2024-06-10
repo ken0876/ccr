@@ -37,9 +37,12 @@ Assumed from examples:\
 Use must have Python installed [Python Install](https://www.python.org/downloads/)\
 Then execute this command anywhere in you preferred terminal:
 ```
-pip install git+https://github.com/ken0876/ccr
+pip install https://github.com/ken0876/ccr/archive/main.zip
 ```
-
+or specific version
+```
+pip install https://github.com/ken0876/ccr/archive/refs/tags/v[INSERT_VERSION].zip
+```
 ## Usage
 
 - Open your preferred terminal
